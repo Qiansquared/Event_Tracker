@@ -23,6 +23,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
+            android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +45,8 @@
 
         <activity
             android:name=".MapsActivity" />
-        <activity android:name=".addEventActivity1" />
+        <activity android:name=".addEventActivity1"
+            android:noHistory="true"/>
         <activity android:name=".viewEventActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MarkerActivity" />

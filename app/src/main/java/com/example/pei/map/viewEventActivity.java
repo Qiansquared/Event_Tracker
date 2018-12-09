@@ -2,16 +2,11 @@ package com.example.pei.map;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
 
 public class viewEventActivity extends AppCompatActivity {
 
@@ -19,7 +14,6 @@ public class viewEventActivity extends AppCompatActivity {
     String[] event_name;
     String[] event_host;
     String[] event_time;
-
 
 
     @Override
@@ -36,6 +30,7 @@ public class viewEventActivity extends AppCompatActivity {
         nameAdapter nameAdapter = new nameAdapter(this,event_name,event_host,event_time);
         EventListView .setAdapter(nameAdapter);
 
+
         EventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
@@ -45,13 +40,7 @@ public class viewEventActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
-
 
     public void LoginPage(View view)
     {
