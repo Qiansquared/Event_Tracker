@@ -14,8 +14,8 @@ import android.widget.Toast;
 public class addEventActivity1 extends AppCompatActivity {
 
     myDbAdapter helper;
-    //jiaqian
     EditText TextName, TextHost, TextDesc;
+    String StringName, StringHost, StringDesc;
     String StringDate, StringStart, StringEnd;
     //Button createEventButton;
     int location_int;
@@ -26,10 +26,11 @@ public class addEventActivity1 extends AppCompatActivity {
         setContentView(R.layout.activity_add_event1);
         helper = new myDbAdapter(this);
 
+
         TextName = (EditText) findViewById(R.id.TextName);
         TextHost = (EditText) findViewById(R.id.TextHost);
         TextDesc = (EditText) findViewById(R.id.TextDesc);
-        //createEventButton = (Button)findViewById(R.id.createEventButton);
+
 
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -127,24 +128,30 @@ public class addEventActivity1 extends AppCompatActivity {
     }
 
        public void BackToMain(View view) {
-        Intent intent = new Intent(addEventActivity1.this, BackToMainActivity.class);
-        if (TextName.getText().toString().matches("")) {
-            Toast.makeText(addEventActivity1.this, "Enter an event name", Toast.LENGTH_LONG).show();
-        } else if (TextHost.getText().toString().matches("")) {
+
+           StringName = TextName.getText().toString();
+           StringHost = TextHost.getText().toString();
+           StringDesc = TextDesc.getText().toString();
+
+        if (StringName.matches("")) {
+            Toast.makeText(addEventActivity1.this, "Enter an event name"+StringName, Toast.LENGTH_LONG).show();
+        } else if (StringHost.matches("")) {
             Toast.makeText(addEventActivity1.this, "Enter an host name", Toast.LENGTH_LONG).show();
-        } else if (TextDesc.getText().toString().matches("")) {
+        } else if (StringDesc.matches("")) {
             Toast.makeText(addEventActivity1.this, "Enter a description", Toast.LENGTH_LONG).show();
         } else {
+
             long id = helper.insertData(TextName.getText().toString(),TextHost.getText().toString(),TextDesc.getText().toString(),
-                    location_int, Integer.parseInt(StringDate),
-                    Integer.parseInt(StringStart),Integer.parseInt(StringEnd));
+                   location_int, Integer.parseInt(StringDate), Integer.parseInt(StringStart),Integer.parseInt(StringEnd));
              if(id == -1)
-                 Toast.makeText(addEventActivity1.this, "Add Event Fail", Toast.LENGTH_LONG).show();
+                Toast.makeText(addEventActivity1.this, "Add Event Fail",Toast.LENGTH_LONG).show();
              else
-                startActivity(intent);
+             {
+                 Intent intent = new Intent(addEventActivity1.this, BackToMainActivity.class);
+                 startActivity(intent);
+             }
         }
     }
-
 }
 
 

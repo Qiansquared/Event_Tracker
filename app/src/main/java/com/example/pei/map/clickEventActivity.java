@@ -1,6 +1,7 @@
 package com.example.pei.map;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -28,28 +29,26 @@ public class clickEventActivity extends AppCompatActivity {
         helper = new myDbAdapter(this);
 
         Intent in = getIntent();
+        //get id here
         int index = in.getIntExtra(" com.example.pei.EVENT_INDEX",-1);
 
-        // displaying the event at index
 
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("MM-dd-YY HH:mm:ss");
-        String time = format.format(calendar.getTime());
-        int day = Integer.parseInt(time.substring(3,5));
-        int hour = Integer.parseInt(time.substring(9,11));
-
-        //event_name=helper.getAllNamesData(day,hour);
-        //event_host= helper.getAllDateData(day,hour);
-        //event_startTime=helper.getAllStartData(day,hour);
-        //event_endTime=helper.getAllEndData(day,hour);
-        //event_des =
-        //event_loc;
+        //Calendar calendar = Calendar.getInstance();
+       // SimpleDateFormat format = new SimpleDateFormat();
+       // String time = format.format(calendar.getTime());
+        int day = 10;
+        int hour = 3;
 
 
+        Resources res = getResources();
+        event_name=res.getStringArray(R.array.event_name);
+        event_host=res.getStringArray(R.array.event_host);
+        event_startTime=res.getStringArray(R.array.event_time);
 
+        //set the names correspods to that id
         String name = event_name[index];
         String host = event_host[index];
-        //String time = event_time[index];
+        String time = event_startTime[index];
 
         TextView nameTextView = (TextView)findViewById(R.id.NameTextView);
         TextView hostTextView = (TextView)findViewById(R.id.HostTextView);

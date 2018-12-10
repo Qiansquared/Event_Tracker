@@ -22,12 +22,12 @@ public class LoginActivity extends AppCompatActivity {
     public void SubmitLogin(View view)
     {
         Intent intent = new Intent(this, addEventActivity1.class);
-        if (TextUser.getText().toString().matches("admin@bu.edu") && (TextPass.getText().toString().matches("12345"))) {
+        //if (TextUser.getText().toString().matches("admin@bu.edu") && (TextPass.getText().toString().matches("12345"))) {
             startActivity(intent);
-        }
-        else {
-            Toast.makeText(LoginActivity.this, "Username/Password is in correct", Toast.LENGTH_LONG).show();
-        }
+       // }
+       // else {
+         //   Toast.makeText(LoginActivity.this, "Username/Password is in correct", Toast.LENGTH_LONG).show();
+        //}
     }
 
 }

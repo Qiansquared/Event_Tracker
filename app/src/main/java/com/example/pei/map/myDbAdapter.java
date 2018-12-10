@@ -9,8 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 public class myDbAdapter {
+
     myDbHelper myhelper;
-    public myDbAdapter(Context context)
+   public  myDbAdapter(Context context)
     {
         myhelper = new myDbHelper(context);
     }
@@ -51,7 +52,7 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.NAME};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,myDbHelper.LOCATION +"=" + location + myDbHelper.DATE + "=" + date + myDbHelper.ENDTIME + ">" + hour,null,null,null,myDbHelper.STARTTIME+"ASC");
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,myDbHelper.LOCATION +" = " + location + myDbHelper.DATE + " = " + date + myDbHelper.ENDTIME + " > " + hour,null,null,null,myDbHelper.STARTTIME + " ASC ");
         //StringBuffer buffer= new StringBuffer();
         int index = 0;
         String[] nameArray = new String[100];
@@ -71,7 +72,7 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.HOST};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,myDbHelper.LOCATION +"=" + location + myDbHelper.DATE + "=" + date + myDbHelper.ENDTIME + ">" + hour,null,null,null,myDbHelper.STARTTIME+"ASC");
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,myDbHelper.LOCATION + " = " + location + myDbHelper.DATE + " = " + date + myDbHelper.ENDTIME + " > " + hour,null,null,null,myDbHelper.STARTTIME +" ASC ");
         //StringBuffer buffer= new StringBuffer();
         int index = 0;
         String[] nameArray = new String[100];
@@ -91,7 +92,7 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.UID};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,myDbHelper.LOCATION +"=" + location + myDbHelper.DATE + "=" + date + myDbHelper.ENDTIME + ">" + hour,null,null,null,myDbHelper.STARTTIME+"ASC");
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,myDbHelper.LOCATION + " = " + location + myDbHelper.DATE + " = " + date + myDbHelper.ENDTIME + " > " + hour,null,null,null,myDbHelper.STARTTIME + " ASC ");
         //StringBuffer buffer= new StringBuffer();
         int index = 0;
         String[] nameArray = new String[100];
@@ -111,7 +112,7 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.STARTTIME};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,myDbHelper.LOCATION +"=" + location + myDbHelper.DATE + "=" + date + myDbHelper.ENDTIME + ">" + hour,null,null,null,myDbHelper.STARTTIME+"ASC");
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,myDbHelper.LOCATION + " = " + location + myDbHelper.DATE + " = " + date + myDbHelper.ENDTIME + " > " + hour,null,null,null,myDbHelper.STARTTIME + " ASC ");
         //StringBuffer buffer= new StringBuffer();
         int index = 0;
         String[] nameArray = new String[100];
@@ -131,7 +132,7 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.ENDTIME};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,myDbHelper.LOCATION +"=" + location + myDbHelper.DATE + "=" + date + myDbHelper.ENDTIME + ">" + hour,null,null,null,myDbHelper.STARTTIME+"ASC");
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,myDbHelper.LOCATION + " = " + location + myDbHelper.DATE + " = " + date + myDbHelper.ENDTIME + " > " + hour,null,null,null,myDbHelper.STARTTIME + " ASC ");
         //StringBuffer buffer= new StringBuffer();
         int index = 0;
         String[] nameArray = new String[100];
@@ -151,7 +152,7 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.NAME};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns, myDbHelper.DATE + "=" + date + myDbHelper.ENDTIME + ">" + hour,null,null,null,myDbHelper.DATE+"ASC,"+ myDbHelper.STARTTIME+"ASC");
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns, myDbHelper.DATE + " = " + date + myDbHelper.ENDTIME + " > " + hour,null,null,null,myDbHelper.DATE + "ASC"+ myDbHelper.STARTTIME + " ASC ");
         //StringBuffer buffer= new StringBuffer();
         int index = 0;
         String[] nameArray = new String[100];
@@ -171,7 +172,7 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.UID};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns, myDbHelper.DATE + "=" + date + myDbHelper.ENDTIME + ">" + hour,null,null,null,myDbHelper.DATE+"ASC,"+ myDbHelper.STARTTIME+"ASC");
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns, myDbHelper.DATE + " = " + date + myDbHelper.ENDTIME + " > " + hour,null,null,null,myDbHelper.DATE +" ASC,"+ myDbHelper.STARTTIME +" ASC ");
         //StringBuffer buffer= new StringBuffer();
         int index = 0;
         String[] nameArray = new String[100];
@@ -298,7 +299,7 @@ public class myDbAdapter {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] whereArgs ={uname};
 
-        int count =db.delete(myDbHelper.TABLE_NAME ,myDbHelper.NAME+" = ?",whereArgs);
+        int count =db.delete(myDbHelper.TABLE_NAME ,myDbHelper.NAME +" = ?",whereArgs);
         return  count;
     }
 
@@ -308,7 +309,7 @@ public class myDbAdapter {
         ContentValues contentValues = new ContentValues();
         contentValues.put(myDbHelper.NAME,newName);
         String[] whereArgs= {oldName};
-        int count =db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.NAME+" = ?",whereArgs );
+        int count =db.update(myDbHelper.TABLE_NAME,contentValues, myDbHelper.NAME +" = ?",whereArgs );
         return count;
     }
 
@@ -326,7 +327,7 @@ public class myDbAdapter {
         private static final String STARTTIME= "Start_Time";    // Column III
         private static final String ENDTIME= "End_Time";    // Column III
 
-        private static final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+" ( "+UID+ "INTEGER PRIMARY KEY AUTOINCREMENT," +NAME+ " VARCHAR(255)," + HOST+ " VARCHAR(255),"+DESCRIPTION+" VARCHAR(255), "+LOCATION+" INTEGER, "+DATE+" INTEGER, "+STARTTIME+" INTEGER, "+ENDTIME+" INTEGER);";
+        private static final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+" ( " + UID + " INTEGER PRIMARY KEY AUTOINCREMENT," +NAME+ " VARCHAR(255)," + HOST+ " VARCHAR(255),"+DESCRIPTION+" VARCHAR(255), "+LOCATION +" INTEGER, " + DATE+" INTEGER, "+STARTTIME+" INTEGER, "+ENDTIME+" INTEGER);";
         private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
         private Context context;
 

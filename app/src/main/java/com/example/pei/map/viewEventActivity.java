@@ -1,6 +1,7 @@
 package com.example.pei.map;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,17 +27,30 @@ public class viewEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_event);
         helper = new myDbAdapter(this);
 
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat format = new SimpleDateFormat("MM-dd-YY HH:mm:ss");
-        String time = format.format(calendar.getTime());
-        int day = Integer.parseInt(time.substring(3,5));
-        int hour = Integer.parseInt(time.substring(9,11));
+        //Calendar calendar = Calendar.getInstance();
+       // SimpleDateFormat format = new SimpleDateFormat("MM-dd-YY HH:mm:ss");
+       // String time = format.format(calendar.getTime());
+       // int day = Integer.parseInt(time.substring(3,5));
+        //int hour = Integer.parseInt(time.substring(9,11));
 
-        //Resources res = getResources();
+        int day = 10;
+        int hour  = 4;
+
+
         EventListView = (ListView) findViewById(R.id.EventListView);
-        event_name=helper.getAllNamesData(day,hour);
-        event_host= helper.getAllDateData(day,hour);
-        event_time=helper.getAllStartData(day,hour);
+        //pass the string here
+        //event_name=helper.getAllNamesData(day,hour);
+        //= helper.getAllDateData(day,hour);
+       // event_time=helper.getAllStartData(day,hour); //?is it a string
+        // add id here
+
+
+        Resources res = getResources();
+        event_name=res.getStringArray(R.array.event_name);
+        event_host=res.getStringArray(R.array.event_host);
+        event_time=res.getStringArray(R.array.event_time);
+
+
 
         nameAdapter nameAdapter = new nameAdapter(this,event_name,event_host,event_time);
         EventListView .setAdapter(nameAdapter);
@@ -45,6 +59,7 @@ public class viewEventActivity extends AppCompatActivity {
         EventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                //find thr i th element in id and pass it
                 Intent showDetailEvent = new Intent (getApplicationContext(),clickEventActivity.class);
                 showDetailEvent.putExtra(" com.example.pei.EVENT_INDEX",i);
                 startActivity(showDetailEvent);
