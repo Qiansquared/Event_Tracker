@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -43,6 +44,22 @@ public class MarkerActivity extends AppCompatActivity {
                 startActivity(showDetailEvent);
             }
         });
+
+
+        String locationName = temp.getText().toString();
+
+        ImageView image;
+        image = (ImageView) findViewById(R.id.imageView);
+
+        if (new String("GSU").equals(locationName)) {
+            image.setImageResource(R.drawable.gsu);
+        } else if (new String("CAS").equals(locationName)) {
+            image.setImageResource(R.drawable.cas);
+        } else if (new String("FitRec").equals(locationName)) {
+            image.setImageResource(R.drawable.fitrec);
+        } else if (new String("Questrom").equals(locationName)) {
+            image.setImageResource(R.drawable.qus);
+        }
 
     }
 

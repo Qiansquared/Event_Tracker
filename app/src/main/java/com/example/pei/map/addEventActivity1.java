@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 public class addEventActivity1 extends AppCompatActivity {
 
+    myDbAdapter helper;
     //jiaqian
     EditText TextName, TextHost, TextDesc;
     String StringDate, StringStart, StringEnd;
@@ -23,7 +24,7 @@ public class addEventActivity1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event1);
-
+        helper = new myDbAdapter(this);
 
         TextName = (EditText) findViewById(R.id.TextName);
         TextHost = (EditText) findViewById(R.id.TextHost);
@@ -48,11 +49,14 @@ public class addEventActivity1 extends AppCompatActivity {
                     case "GSU":
                         location_int = 1;
                         break;
-                    case "ENG":
+                    case "FitRec":
                         location_int = 2;
                         break;
                     case "CAS":
                         location_int = 3;
+                        break;
+                    case "Questrom":
+                        location_int = 4;
                         break;
                 }
             }
@@ -87,7 +91,6 @@ public class addEventActivity1 extends AppCompatActivity {
             }
         });
 
-
         Spinner spinner4 = (Spinner) findViewById(R.id.spinner4);
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,
                 R.array.hour_array, android.R.layout.simple_spinner_item);
@@ -121,36 +124,9 @@ public class addEventActivity1 extends AppCompatActivity {
             }
         });
 
-
     }
 
-
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String location = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), "Selected: " + location, Toast.LENGTH_LONG).show();
-        switch (location) {
-            case "GSU":
-                location_int = 1;
-                break;
-            case "ENG":
-                location_int = 2;
-                break;
-            case "CAS":
-                location_int = 3;
-                break;
-        }
-    }
-
-
-    // TextName.getText().toString(),
-    //TextHost.getText().toString(),
-    //TextDesc.getText().toString(),
-    //(Integer) location_int,
-    //      Integer.parseInt(StringDate),
-    //    Integer.parseInt(StringStart),
-    //  Integer.parseInt(StringEnd));
-
-    public void BacktoMain(View view) {
+       public void BackToMain(View view) {
         Intent intent = new Intent(addEventActivity1.this, BackToMainActivity.class);
         if (TextName.getText().toString().matches("")) {
             Toast.makeText(addEventActivity1.this, "Enter an event name", Toast.LENGTH_LONG).show();
@@ -159,7 +135,13 @@ public class addEventActivity1 extends AppCompatActivity {
         } else if (TextDesc.getText().toString().matches("")) {
             Toast.makeText(addEventActivity1.this, "Enter a description", Toast.LENGTH_LONG).show();
         } else {
-            startActivity(intent);
+            long id = helper.insertData(TextName.getText().toString(),TextHost.getText().toString(),TextDesc.getText().toString(),
+                    location_int, Integer.parseInt(StringDate),
+                    Integer.parseInt(StringStart),Integer.parseInt(StringEnd));
+             if(id == -1)
+                 Toast.makeText(addEventActivity1.this, "Add Event Fail", Toast.LENGTH_LONG).show();
+             else
+                startActivity(intent);
         }
     }
 
