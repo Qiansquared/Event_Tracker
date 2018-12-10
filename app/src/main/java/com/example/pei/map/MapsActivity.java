@@ -1,7 +1,6 @@
 package com.example.pei.map;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends AppCompatActivity implements
         OnMapReadyCallback,
-        GoogleMap.OnMarkerClickListener {
+        GoogleMap.OnInfoWindowClickListener {
 
     private GoogleMap mMap;
 
@@ -91,11 +90,11 @@ public class MapsActivity extends AppCompatActivity implements
                 .title("FitRec"));
         mFitRec.setTag(0);
 
-        mMap.setOnMarkerClickListener(this);
+        mMap.setOnInfoWindowClickListener(this);
     }
 
     @Override
-    public boolean onMarkerClick(final Marker marker) {
+    public void onInfoWindowClick(final Marker marker) {
 
         MarkerName = marker.getTitle();
 
@@ -104,7 +103,7 @@ public class MapsActivity extends AppCompatActivity implements
 
         startActivity(intent);
 
-        return false;
+
     }
 
 }
